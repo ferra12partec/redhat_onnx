@@ -16,7 +16,8 @@ def create_prediction():
     try:
         data = request.get_data(as_text=True)  # Legge i dati come testo direttamente
         data = list(json.loads(data).values())
-        return jsonify(predict(data))
+        data = [str(round(p[0],2)) for p in predict(data)]
+        return jsonify({'prediction':data})
     except Exception as e:
         return jsonify({'error': str(e)})
     
