@@ -1,10 +1,11 @@
-# FROM registry.access.redhat.com/ubi8/python-39:latest
-FROM python:3.9-slim
+FROM registry.access.redhat.com/ubi8/python-39:latest
+# FROM python:3.9-slim
 
 COPY requirements.txt ./requirements.txt
 COPY data data/
 COPY model model/
 COPY config.ini ./config.ini
+COPY data_prep.py ./data_prep.py
 
 RUN pip install -r requirements.txt
 

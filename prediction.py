@@ -10,10 +10,13 @@ config = ConfigParser()
 config.read('config.ini')
 
 def predict(data):
-    with open('model//tokenizer.pickle', 'rb') as handle:
-        tokenizer = pickle.load(handle)
+    try:
+        with open('model//tokenizer.pickle', 'rb') as handle:
+            tokenizer = pickle.load(handle)
+    except:
+        print('Loading error')
+    print(data)
     model = tf.keras.models.load_model('model//my_model.keras')
-    # print(data)
     input = [depure_data(d) for d in data]
     input = tokenizer.texts_to_sequences(input)
     input = pad_sequences(input, maxlen=int(config['MODEL_PARAMS']['max_len']))
