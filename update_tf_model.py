@@ -26,7 +26,6 @@ def create_model():
     tokenizer.fit_on_texts(data)
     sequences = tokenizer.texts_to_sequences(data)
     phrases = pad_sequences(sequences, maxlen=max_len)
-
     model1 = Sequential()
     model1.add(layers.Embedding(max_words, 20)) #The embedding layer
     model1.add(layers.LSTM(15)) #Our LSTM layer
@@ -40,7 +39,7 @@ def create_model():
 
     history = model1.fit(phrases, np.array(label), epochs=100)
 
-    return model1
+    return model1, tokenizer
 
 model1 = create_model()
 
@@ -53,7 +52,8 @@ model1 = create_model()
 
 # original_data = tokenizer.sequences_to_texts(sequences)
 
-# with open('model//tokenizer.pickle', 'wb') as handle:
-#     pickle.dump(tokenizer, handle, protocol=pickle.HIGHEST_PROTOCOL)
+with open('model//tokenizer.pickle', 'wb') as handle:
+    pickle.dump(model1[1], handle, protocol=pickle.HIGHEST_PROTOCOL)
 
-model1.save('model//my_model.keras')
+model1[0].save('model//my_model.keras')
+
