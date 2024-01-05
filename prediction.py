@@ -5,7 +5,6 @@ import json
 import pickle
 from configparser import ConfigParser
 import numpy as np
-from data_prep import create_model
 
 config = ConfigParser()
 config.read('config.ini')
@@ -15,8 +14,7 @@ def predict(data):
         with open('model//tokenizer.pickle', 'rb') as handle:
             tokenizer = pickle.load(handle)
     except:
-        print('Loading error')
-    print(data)
+        print('Loading error tokenizer')
     model = tf.keras.models.load_model('model//my_model.keras')
     input = [depure_data(d) for d in data]
     input = tokenizer.texts_to_sequences(input)
