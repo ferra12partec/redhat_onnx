@@ -44,16 +44,16 @@ def create_model():
 
 model1 = create_model()
 
-test = ['Il Sassuolo ha stipulato un accordo con Mapei per 50 mila euro', "Il Napoli ha perso l'ultima di campionato", 'Il Milan ha trovato l\'accordo con il nuovo giocatore']
-test = [depure_data(d) for d in test]
-test = tokenizer.texts_to_sequences(test)
-test = pad_sequences(test, maxlen=max_len)
+# test = ['Il Sassuolo ha stipulato un accordo con Mapei per 50 mila euro', "Il Napoli ha perso l'ultima di campionato", 'Il Milan ha trovato l\'accordo con il nuovo giocatore']
+# test = [depure_data(d) for d in test]
+# test = tokenizer.texts_to_sequences(test)
+# test = pad_sequences(test, maxlen=max_len)
 
-model1.predict(test)
+# model1.predict(test)
 
-original_data = tokenizer.sequences_to_texts(sequences)
+# original_data = tokenizer.sequences_to_texts(sequences)
 
-with open('model//tokenizer.pickle', 'wb') as handle:
-    pickle.dump(tokenizer, handle, protocol=pickle.HIGHEST_PROTOCOL)
+# with open('model//tokenizer.pickle', 'wb') as handle:
+#     pickle.dump(tokenizer, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
 model1.save('model//my_model.keras')

@@ -17,11 +17,7 @@ def predict(data):
     except:
         print('Loading error')
     print(data)
-    try:
-        model = tf.keras.models.load_model('model//my_model.keras')
-    except:
-        model = create_model()
-        print('Loading error model')
+    model = tf.keras.models.load_model('model//my_model.keras')
     input = [depure_data(d) for d in data]
     input = tokenizer.texts_to_sequences(input)
     input = pad_sequences(input, maxlen=int(config['MODEL_PARAMS']['max_len']))
