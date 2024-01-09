@@ -55,5 +55,6 @@ model1 = create_model()
 with open('model//tokenizer.pickle', 'wb') as handle:
     pickle.dump(model1[1], handle, protocol=pickle.HIGHEST_PROTOCOL)
 
-model1[0].save('model//my_model.keras')
+# model1[0].save('model//my_model.h5')
 
+tf.saved_model.save(model1[0], 'model//my_model')
