@@ -38,4 +38,4 @@ RUN pip install Flask onnxruntime skl2onnx scikit-learn
 EXPOSE 5000
 
 # Comando di avvio dell'applicazione
-CMD ["python", "flask_app.py"]
+CMD ["python", "flask_app.py", "8080"]
