@@ -9,6 +9,10 @@ app = Flask(__name__)
 # Carica il modello ONNX
 onnx_session = onnxruntime.InferenceSession('model.onnx')
 
+@app.route('/predict', methods=['GET', 'POST'])
+def status():
+    return jsonify({'status': 'ok'})
+
 @app.route('/predict', methods=['POST'])
 def predict():
     # Ottieni i dati dal corpo della richiesta
