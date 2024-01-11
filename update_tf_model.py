@@ -51,15 +51,16 @@ def create_model():
 
 # original_data = tokenizer.sequences_to_texts(sequences)
 
-model, tokenizer = create_model()
+# model, tokenizer = create_model()
 
-with open('tokenizer.pickle', 'wb') as handle:
-    pickle.dump(tokenizer, handle, protocol=pickle.HIGHEST_PROTOCOL)
+# with open('tokenizer.pickle', 'wb') as handle:
+#     pickle.dump(tokenizer, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
-model_json = model.to_json()
-with open('model.json', 'w') as file:
-    file.write(model_json)
-model.save_weights('weights.h5')
+# model_json = model.to_json()
+# with open('model.json', 'w') as file:
+#     file.write(model_json)
+# model.save_weights('weights.h5')
+
 # model1[0].save('my_model.keras')
 
 # tf.saved_model.save(model1[0], 'model//my_model')
