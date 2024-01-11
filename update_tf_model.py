@@ -32,16 +32,15 @@ def create_model():
     model1.add(layers.Dense(10,activation='relu'))
     model1.add(layers.Dense(1,activation='sigmoid'))
 
-    optimizer = keras.optimizers.SGD(learning_rate=0.5)
+    optimizer = keras.optimizers.SGD(learning_rate=0.3)
     loss = keras.losses.BinaryCrossentropy()
     metrics = keras.metrics.BinaryAccuracy()
     model1.compile(optimizer=optimizer, loss=loss, metrics=metrics)
 
-    history = model1.fit(phrases, np.array(label), epochs=50)
+    history = model1.fit(phrases, np.array(label), epochs=100)
 
     return model1, tokenizer
 
-# model1 = create_model()
 
 # test = ['Il Sassuolo ha stipulato un accordo con Mapei per 50 mila euro', "Il Napoli ha perso l'ultima di campionato", 'Il Milan ha trovato l\'accordo con il nuovo giocatore']
 # test = [depure_data(d) for d in test]
@@ -52,9 +51,15 @@ def create_model():
 
 # original_data = tokenizer.sequences_to_texts(sequences)
 
-# with open('tokenizer.pickle', 'wb') as handle:
-#     pickle.dump(model1[1], handle, protocol=pickle.HIGHEST_PROTOCOL)
+model, tokenizer = create_model()
 
+with open('tokenizer.pickle', 'wb') as handle:
+    pickle.dump(tokenizer, handle, protocol=pickle.HIGHEST_PROTOCOL)
+
+model_json = model.to_json()
+with open('model.json', 'w') as file:
+    file.write(model_json)
+model.save_weights('weights.h5')
 # model1[0].save('my_model.keras')
 
 # tf.saved_model.save(model1[0], 'model//my_model')

@@ -30,7 +30,9 @@ RUN pip install Flask scikit-learn tensorflow==2.15.0
 WORKDIR /app
 
 COPY data data/
-COPY my_model.keras ./my_model.keras
+COPY model.json ./model.json
+COPY weights.h5 ./weights.h5
+# COPY my_model.keras ./my_model.keras
 COPY tokenizer.pickle ./tokenizer.pickle
 COPY config.ini ./config.ini
 COPY data_prep.py ./data_prep.py
