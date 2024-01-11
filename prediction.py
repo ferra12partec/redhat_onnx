@@ -5,7 +5,7 @@ import json
 import pickle
 from configparser import ConfigParser
 import numpy as np
-# from data_prep import create_model
+from update_tf_model import create_model
 
 config = ConfigParser()
 config.read('config.ini')
@@ -13,7 +13,8 @@ config.read('config.ini')
 def predict(data):
     with open('model//tokenizer.pickle', 'rb') as handle:
             tokenizer = pickle.load(handle)
-    model = tf.keras.models.load_model('model//my_model_14_0.keras')
+    # model = tf.keras.models.load_model('model//my_model_14_0.keras')
+    model = create_model()[0]
     input = [depure_data(d) for d in data]
     input = tokenizer.texts_to_sequences(input)
     input = pad_sequences(input, maxlen=int(config['MODEL_PARAMS']['max_len']))

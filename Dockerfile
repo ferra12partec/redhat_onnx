@@ -21,21 +21,24 @@
 # File: Dockerfile
 
 # Usa un'immagine di Python
-FROM python:3.8-slim
+FROM --platform=linux/x86_64 python:3.9
+RUN python -m pip install --upgrade pip
+RUN pip install Flask scikit-learn tensorflow==2.15.0
+
 
 # Imposta la directory di lavoro
 WORKDIR /app
 
-# Copia i file necessari nella directory di lavoro
-COPY train_model.py .
-COPY flask_app.py .
-COPY model.onnx .
+COPY data data/
+COPY model model/
+COPY config.ini ./config.ini
+COPY data_prep.py ./data_prep.py
+COPY app.py ./app.py
+COPY prediction.py ./prediction.py
+COPY update_tf_model.py ./update_tf_model.py
 
-# Installa le dipendenze
-RUN pip install Flask onnxruntime skl2onnx scikit-learn
-
-# Esponi la porta 5000
-EXPOSE 5000
+# USER 1001
+EXPOSE 8080
 
 # Comando di avvio dell'applicazione
-CMD ["python", "flask_app.py", "8080"]
+CMD ["python3", "app.py", "8080"]
