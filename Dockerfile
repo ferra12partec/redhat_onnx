@@ -23,7 +23,7 @@
 # Usa un'immagine di Python
 FROM --platform=linux/x86_64 python:3.9
 RUN python -m pip install --upgrade pip
-RUN pip install Flask scikit-learn tensorflow==2.15.0
+RUN pip install Flask tensorflow==2.15.0
 
 
 # Imposta la directory di lavoro
