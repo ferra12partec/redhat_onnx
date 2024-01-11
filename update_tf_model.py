@@ -32,12 +32,12 @@ def create_model():
     model1.add(layers.Dense(10,activation='relu'))
     model1.add(layers.Dense(1,activation='sigmoid'))
 
-    optimizer = keras.optimizers.SGD(learning_rate=0.3)
+    optimizer = keras.optimizers.SGD(learning_rate=0.5)
     loss = keras.losses.BinaryCrossentropy()
     metrics = keras.metrics.BinaryAccuracy()
     model1.compile(optimizer=optimizer, loss=loss, metrics=metrics)
 
-    history = model1.fit(phrases, np.array(label), epochs=100)
+    history = model1.fit(phrases, np.array(label), epochs=50)
 
     return model1, tokenizer
 
@@ -52,9 +52,9 @@ model1 = create_model()
 
 # original_data = tokenizer.sequences_to_texts(sequences)
 
-with open('model//tokenizer.pickle', 'wb') as handle:
+with open('tokenizer.pickle', 'wb') as handle:
     pickle.dump(model1[1], handle, protocol=pickle.HIGHEST_PROTOCOL)
 
-model1[0].save('model//my_model_14_0.keras')
+model1[0].save('my_model.keras')
 
 # tf.saved_model.save(model1[0], 'model//my_model')

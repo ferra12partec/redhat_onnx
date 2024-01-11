@@ -1,20 +1,17 @@
 import tensorflow as tf
 from keras.preprocessing.sequence import pad_sequences
 from data_prep import depure_data
-import json
+# import json
 import pickle
 from configparser import ConfigParser
-import numpy as np
+# import numpy as np
 from update_tf_model import create_model
 
 config = ConfigParser()
 config.read('config.ini')
 
 def predict(data):
-    with open('model//tokenizer.pickle', 'rb') as handle:
-            tokenizer = pickle.load(handle)
-    # model = tf.keras.models.load_model('model//my_model_14_0.keras')
-    model = create_model()[0]
+    model, tokenizer = create_model()
     input = [depure_data(d) for d in data]
     input = tokenizer.texts_to_sequences(input)
     input = pad_sequences(input, maxlen=int(config['MODEL_PARAMS']['max_len']))

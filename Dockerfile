@@ -30,7 +30,8 @@ RUN pip install Flask scikit-learn tensorflow==2.15.0
 WORKDIR /app
 
 COPY data data/
-COPY model model/
+COPY my_model.keras ./my_model.keras
+COPY tokenizer.pickle ./tokenizer.pickle
 COPY config.ini ./config.ini
 COPY data_prep.py ./data_prep.py
 COPY app.py ./app.py
@@ -38,7 +39,7 @@ COPY prediction.py ./prediction.py
 COPY update_tf_model.py ./update_tf_model.py
 
 # USER 1001
-EXPOSE 8080
+# EXPOSE 8080
 
 # Comando di avvio dell'applicazione
 CMD ["python3", "app.py", "8080"]
