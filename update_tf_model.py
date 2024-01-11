@@ -41,7 +41,7 @@ def create_model():
 
     return model1, tokenizer
 
-model1 = create_model()
+# model1 = create_model()
 
 # test = ['Il Sassuolo ha stipulato un accordo con Mapei per 50 mila euro', "Il Napoli ha perso l'ultima di campionato", 'Il Milan ha trovato l\'accordo con il nuovo giocatore']
 # test = [depure_data(d) for d in test]
@@ -52,9 +52,9 @@ model1 = create_model()
 
 # original_data = tokenizer.sequences_to_texts(sequences)
 
-with open('tokenizer.pickle', 'wb') as handle:
-    pickle.dump(model1[1], handle, protocol=pickle.HIGHEST_PROTOCOL)
+# with open('tokenizer.pickle', 'wb') as handle:
+#     pickle.dump(model1[1], handle, protocol=pickle.HIGHEST_PROTOCOL)
 
-model1[0].save('my_model.keras')
+# model1[0].save('my_model.keras')
 
 # tf.saved_model.save(model1[0], 'model//my_model')
